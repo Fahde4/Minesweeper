@@ -11,7 +11,7 @@ const Minesweeper = {
     ],
 
     init() {
-        this.logic = localLogic;
+        this.logic = remoteLogic;
         this.bodyFunction();
         this.newGame('small');
     },
@@ -126,7 +126,7 @@ const Minesweeper = {
         return cell;
     },
 
-    newGame(gameType) {
+    async newGame(gameType) {
         for (const mode of this.gameType) {
             if (mode.name === gameType) {
                 this.size = mode.size;
@@ -135,7 +135,7 @@ const Minesweeper = {
         }
 
         this.generatePlayfield(this.size);
-        this.logic.init(this.size, this.mines);
+        await this.logic.init(this.size, this.mines);
 
         const existingOverlay = document.querySelector("#overlay");
         if (existingOverlay) {
@@ -143,13 +143,13 @@ const Minesweeper = {
         }
     },
 
-    leftClickHandler(event) {
+    async leftClickHandler(event) {
         event.preventDefault();
 
         const x = event.target.dataset.x;
         const y = event.target.dataset.y;
 
-        const result = this.logic.sweep(x, y);
+        const result = await this.logic.sweep(x, y);
         const mineHit = result.mineHit;
         const minesAround = result.minesAround;
         const emptyCells = result.emptyCells;
@@ -222,7 +222,8 @@ const Minesweeper = {
 };
 
 const localLogic = {
-    init(size, mines) {
+
+    async init(size, mines) {
         this.size = size;
         this.mines = mines;
         this.moves = 0;
@@ -245,7 +246,7 @@ const localLogic = {
         }
     },
 
-    sweep(x, y) {
+    async sweep(x, y) {
         x = parseInt(x);
         y = parseInt(y);
 
@@ -417,3 +418,27 @@ const localLogic = {
         Minesweeper.displayOverlay('Green FN');
     }
 };
+
+remoteLogic={
+
+    serverURL : 'https://www2.hs-esslingen.de/~melcher/internet-technologien/minesweeper/?',
+
+    async fetchAndDecode(FAD){
+
+        return fetch(this.serverURL + FAD).then(response=>{return response.json();});
+
+    },
+
+    async init(size, mines){
+        const requestString = 'request=init&size=${siz}&mines=${mine}&userid=thrait02';
+        const responseString = await this.fetchAndDecode(requestString);
+        this.token = responseString;
+
+    },
+    async sweep(x,y){
+        const requestSweep = 'request=sweep&token=${this.token}&x=${x}&y=${y}';
+        const responseSweep = await this.fetchAndDecode(requestSweep);
+
+        return responseSweep;
+    }
+}
