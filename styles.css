@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --titel-color: #6a6a6a;
+  --footer-color: #808080;
+  --background-color: #3f3f3f;
+  --background-button-color: #545454;
+  --shadowsize: 4px;
+  --shadowcolor: rgb(36, 36, 36);
+  --highlightcolor: rgb(229, 229, 229);
+}
+
+html,
+body {
+  height: 100%;
+
+}
+
+.content {
+  width: min(100vw, 50vh);
+  height: min(100vh, 200vw);
+  background-color: rgb(0, 0, 0);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-image: url("images/artworks.jpg");
+  background-size: cover;
+  height: 30%;
+  background-color: rgb(172, 172, 172);
+}
+
+.title {
+  text-align: left;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: min(12vw, 6vh);
+  padding-left: 0.1em;
+
+}
+
+.subtitle {
+  text-align: left;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: min(3vw, 2vh);
+  padding-left: 0.2em;
+
+}
+
+font {
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: min(4.5vw, 2.5vh);
+  padding-top: 0.4em;
+  padding-left: 0.4em;
+}
+
+font1 {
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: min(4.5vw, 2.5vh);
+  padding-top: 0.4em;
+  padding-left: 0.4em;
+}
+
+
+#playfield {
+  height: min(100vw, 50vh);
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+  grid-template-columns: repeat(9, calc(50vh / 9));
+  grid-template-rows: repeat(9, calc(50vh / 9));
+  place-content: center;
+}
+
+.cell {
+  width: calc(100% / 9 - var(--shadowsize) * 2 -1px);
+  padding-bottom: calc(100% / 9 - var(--shadowsize) * 2 -1px);
+  background-color: rgb(255, 255, 255);
+  flex-shrink: 0;
+  border: var(--shadowsize) solid rgb(0, 0, 0);
+
+}
+
+.covered {
+  background-color: lightgray;
+  border-top: var(--shadowsize) solid var(--highlightcolor);
+  border-left: var(--shadowsize) solid var(--highlightcolor);
+  border-bottom: var(--shadowsize) solid var(--shadowcolor);
+  border-right: var(--shadowsize) solid var(--shadowcolor);
+}
+
+.symbol_1 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 0%;
+  background-repeat: no-repeat;
+}
+
+.symbol_2 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 11.11%;
+  background-repeat: no-repeat;
+}
+
+.symbol_3 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 22.22%;
+  background-repeat: no-repeat;
+}
+
+.symbol_4 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 33.33%;
+  background-repeat: no-repeat;
+}
+
+.symbol_5 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 44.44%;
+  background-repeat: no-repeat;
+}
+
+.symbol_6 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 55.55%;
+  background-repeat: no-repeat;
+}
+
+.symbol_7 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 66.66%;
+  background-repeat: no-repeat;
+}
+
+.symbol_8 {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 77.77%;
+  background-repeat: no-repeat;
+}
+
+.symbol_flag {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 88%;
+  background-repeat: no-repeat;
+}
+
+.symbol_bomb {
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 100%;
+  background-repeat: no-repeat;
+}
+
+.symbol_mine {
+  background-color: rgb(255, 22, 22);
+  background-image: url("images/symbols.svg");
+  background-size: 1000%;
+  background-position-x: 100%;
+  background-repeat: no-repeat;
+}
+
+
+
+
+.buttonholder {
+  height: 28%;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+
+  button {
+    width: 30%;
+    height: 35%;
+    background-color: white;
+    color: black;
+    border: 2px solid;
+    padding: 20px 10px;
+  }
+
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.footer {
+
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: min(3vw, 2vh);
+  padding-left: 0.2em;
+  height: 4%;
+  background-color: rgb(0, 0, 0);
+
+}
